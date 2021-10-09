@@ -1,0 +1,50 @@
+<div class="container">
+  <h2>Stock Portfolio</h2>
+  <p>Manage your stocks in the below table:</p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Symbol</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">#</th>
+        <th scope="col">Bought</th>
+        <th scope="col">Current</th>
+        <th scope="col">Yield</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of stocks; let i= index">
+        <td>{{item.symbol}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.price}}</td>
+        <td>{{item.contracts}}</td>
+        <td>{{item.buyPrice| number : '1.2-2'}}</td>
+        <td>{{item.price * item.contracts}}</td>
+        <td>{{getPercent(item.price * item.contracts, item.buyPrice) | number : '1.2-2'}}%</td>
+        <td>
+          <a (click)="buyStock()" href="#">Buy</a> &nbsp;
+          <a (click)="sellStock()" href="#">Sell</a> &nbsp;
+          <button type="button" title="Delete" class="btn btn-danger" (click)="deleteStock(item.stockId, i)"> X
+          </button>
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr *ngIf="stocks">
+        <td colspan="4">Total: </td>
+        <td>{{totalBuyPrice()}}</td>
+        <td>{{totalMarketPrice()}}</td>
+        <td>{{totalPercentage() | number : '1.2-2'}}</td>
+        <td></td>
+      </tr>
+    </tfoot>
+  </table>
+  <br><br><br>
+
+  <div class="col-6">
+    <app-add-stock (AddedStock)="handleNewStock($event)"></app-add-stock>
+  </div>
+
+</div>
