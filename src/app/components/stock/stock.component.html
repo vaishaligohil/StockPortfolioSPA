@@ -21,7 +21,7 @@
         <td>{{item.price}}</td>
         <td>{{item.contracts}}</td>
         <td>{{item.buyPrice| number : '1.2-2'}}</td>
-        <td>{{item.price * item.contracts}}</td>
+        <td>{{(item.price * item.contracts) | number : '1.2-2'}}</td>
         <td>{{getPercent(item.price * item.contracts, item.buyPrice) | number : '1.2-2'}}%</td>
         <td>
           <button type="button" title="Delete" class="btn btn-danger" (click)="deleteStock(item.stockId, i)"> X
