@@ -43,7 +43,7 @@ export class StockComponent implements OnInit {
   }
 
   // Read real time market price for the stocks in the portfolio
-  getMarkteStock() {
+  getMarketStock() {
     var data = '?vwdkey=' + this.stocks.map((x) => x.symbol).join('&vwdkey=');
 
     this.marketStockService.getMarketStock(data).subscribe(
@@ -96,12 +96,6 @@ export class StockComponent implements OnInit {
       this.stocks.push(stock);
     this.getMarketPrice();
   }
-
-  buyStock() {
-
-  }
-
-  sellStock() { }
 
   /// Footer total columns
   totalBuyPrice() {
