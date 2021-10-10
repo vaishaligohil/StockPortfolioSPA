@@ -86,8 +86,14 @@ export class StockComponent implements OnInit {
   }
 
   // Update portfolio after new stock is added
-  handleNewStock(stock: any) {
-    this.stocks.push(stock);
+  handleNewStock(stock: IStock) {
+    // Maintain a single position when the same symbol is added multiple times
+    if (this.stocks.find((s) => s.stockId == stock.stockId) != undefined) {
+      var index = this.stocks.findIndex((s) => s.stockId == stock.stockId);
+      this.stocks[index] = stock;
+    }
+    else
+      this.stocks.push(stock);
     this.getMarketPrice();
   }
 

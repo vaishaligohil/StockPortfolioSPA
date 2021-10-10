@@ -24,8 +24,6 @@
         <td>{{item.price * item.contracts}}</td>
         <td>{{getPercent(item.price * item.contracts, item.buyPrice) | number : '1.2-2'}}%</td>
         <td>
-          <a (click)="buyStock()" href="#">Buy</a> &nbsp;
-          <a (click)="sellStock()" href="#">Sell</a> &nbsp;
           <button type="button" title="Delete" class="btn btn-danger" (click)="deleteStock(item.stockId, i)"> X
           </button>
         </td>
@@ -34,8 +32,8 @@
     <tfoot>
       <tr *ngIf="stocks">
         <td colspan="4">Total: </td>
-        <td>{{totalBuyPrice()}}</td>
-        <td>{{totalMarketPrice()}}</td>
+        <td>{{totalBuyPrice()| number : '1.2-2'}}</td>
+        <td>{{totalMarketPrice()| number : '1.2-2'}}</td>
         <td>{{totalPercentage() | number : '1.2-2'}}</td>
         <td></td>
       </tr>
